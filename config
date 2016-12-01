@@ -1,4 +1,0 @@
-#!/bin/sh
-
-git config --global user.email "1181052146@qq.com"
-git config --global user.name "liu"
