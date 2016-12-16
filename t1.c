@@ -10,7 +10,8 @@ int main()
 	s=malloc(1024);
 	p=s;
 	*p='b';
-	s="abcdefg";
+	*s='a';
+	//s="abcdefg";
 	int i;
 	for(i=0;i<10;i++)
 	{
@@ -21,9 +22,10 @@ int main()
 		printf("hello!\n");
 	}
 	//printf("%c\n",*s);
-	//printf("%s\n",p);
+	printf("%s\n",p);
 	printf("%s\n",s);
 	printf("%c\n",*p);
-	//printf("%s\n",p);
+	printf("%p\n",p);
+	printf("%p\n",s);
 	return 0;
 }

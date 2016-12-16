@@ -1,0 +1,55 @@
+Module                  Size  Used by
+nls_utf8               16384  1
+isofs                  40960  1
+vboxsf                 45056  0
+snd_intel8x0           40960  2
+snd_ac97_codec        131072  1 snd_intel8x0
+crct10dif_pclmul       16384  0
+ac97_bus               16384  1 snd_ac97_codec
+crc32_pclmul           16384  0
+aesni_intel           167936  0
+snd_pcm               106496  2 snd_ac97_codec,snd_intel8x0
+snd_seq_midi           16384  0
+snd_seq_midi_event     16384  1 snd_seq_midi
+aes_x86_64             20480  1 aesni_intel
+snd_rawmidi            32768  1 snd_seq_midi
+snd_seq                69632  2 snd_seq_midi_event,snd_seq_midi
+lrw                    16384  1 aesni_intel
+snd_seq_device         16384  3 snd_seq,snd_rawmidi,snd_seq_midi
+gf128mul               16384  1 lrw
+snd_timer              32768  2 snd_pcm,snd_seq
+glue_helper            16384  1 aesni_intel
+vboxvideo              49152  2
+joydev                 20480  0
+ablk_helper            16384  1 aesni_intel
+ttm                    94208  1 vboxvideo
+snd                    81920  11 snd_ac97_codec,snd_intel8x0,snd_timer,snd_pcm,snd_seq,snd_rawmidi,snd_seq_device
+drm_kms_helper        155648  1 vboxvideo
+cryptd                 20480  2 aesni_intel,ablk_helper
+soundcore              16384  1 snd
+drm                   364544  5 ttm,drm_kms_helper,vboxvideo
+fb_sys_fops            16384  1 drm_kms_helper
+syscopyarea            16384  2 drm_kms_helper,vboxvideo
+sysfillrect            16384  2 drm_kms_helper,vboxvideo
+sysimgblt              16384  2 drm_kms_helper,vboxvideo
+input_leds             16384  0
+serio_raw              16384  0
+i2c_piix4              24576  0
+8250_fintek            16384  0
+vboxguest             282624  6 vboxsf,vboxvideo
+mac_hid                16384  0
+parport_pc             32768  0
+ppdev                  20480  0
+lp                     20480  0
+parport                49152  3 lp,ppdev,parport_pc
+autofs4                40960  2
+hid_generic            16384  0
+usbhid                 49152  0
+hid                   118784  2 hid_generic,usbhid
+psmouse               126976  0
+ahci                   36864  2
+libahci                32768  1 ahci
+fjes                   28672  0
+video                  40960  0
+e1000                 135168  0
+pata_acpi              16384  0
