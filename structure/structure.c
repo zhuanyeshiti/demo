@@ -28,8 +28,8 @@ int my_print(char *str)
 
 /*struct file_operations demo_ops = 
 {
-	write = my_write;
-	print = my_print;
+	.write = my_write;
+	.print = my_print;
 };*/
 
 struct file_operations demo_ops = 
