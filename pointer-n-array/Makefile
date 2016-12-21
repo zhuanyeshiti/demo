@@ -1,8 +1,8 @@
-t1:
-	gcc -o ts t1.c
-t2:
-	gcc -o ts t2.c
-t3:
-	gcc -o ts t3.c
-t4:
-	gcc -o ts t4.c
+pointer:
+	gcc -o ts func-pointer.c
+pointer:
+	gcc -o ts pointer.c
+zero-array:
+	gcc -o ts zero-array.c
+getchar:
+	gcc -o ts getchar.c
