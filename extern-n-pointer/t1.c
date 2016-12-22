@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <stdlib.h>
 #include "hello.h"
 
 struct s1{
@@ -17,11 +18,12 @@ void func(int);
 int main()
 {
 	//extern int b;
-	//int a;
-	//a=b;
+	int a;
+	a=b;
 	struct s2 ss;
+	//ss=(struct s2*)malloc(sizeof(ss));
 	ss.s->b="hello world!";
-	printf("%s\n",ss.s->b);
+	printf("%s\n",ss->s->b);
 	printf("%d\n",b);
 	hello();
 	ss.s->c=func;
