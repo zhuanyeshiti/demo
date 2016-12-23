@@ -21,9 +21,12 @@ int main()
 	int a;
 	a=b;
 	struct s2 ss;
-	//ss=(struct s2*)malloc(sizeof(ss));
+	//ss=(struct s2*)malloc(sizeof(s2));
+	ss.s=(struct s1*)malloc(sizeof(struct s1));
+	ss.s->b=(char *)malloc(20);
+	ss.s->c=(void *)malloc(50);
 	ss.s->b="hello world!";
-	printf("%s\n",ss->s->b);
+	printf("%s\n",ss.s->b);
 	printf("%d\n",b);
 	hello();
 	ss.s->c=func;
@@ -34,6 +37,7 @@ loop:	if(getchar())
 		getchar();
 		printf("1\t");
 		printf("2\n");
+		//ss.s->b=(char *)malloc(1024*1024*1024);	
 	}
 	goto loop;
 	return 0;
