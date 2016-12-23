@@ -13,6 +13,8 @@ struct s2{
 	int c;
 };
 
+#define DEBUG(x) x
+
 void func(int);
 
 int main()
@@ -28,7 +30,7 @@ int main()
 	ss.s->b="hello world!";
 	printf("%s\n",ss.s->b);
 	printf("%d\n",b);
-	hello();
+	DEBUG(hello());
 	ss.s->c=func;
 	(*ss.s->c)(1);
 	//fn(1);
