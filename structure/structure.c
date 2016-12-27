@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <stdlib.h>
 
 /*
  * In kernel there is ".read = read_function", 
@@ -14,15 +15,15 @@ struct file_operations
 
 int my_write(char *str)
 {
-	//printf("%s: %s\n", __func__, str);
-	printf("%s\n",str);
+	printf("%s: %s\n", __func__, str);
+	//printf("%s\n",str);
 	return 0;
 }
 
 int my_print(char *str)
 {
-	//printf("%s: %s\n", __func__, str);
-	printf("%s\n",str);
+	printf("%s: %s\n", __func__, str);
+	//printf("%s\n",str);
 	return 0;
 }
 
@@ -40,6 +41,12 @@ struct file_operations demo_ops =
 
 int main()
 {
+	int *a;
+	a=(int *)malloc(sizeof(int));
+	*a=1;
+	*(a+1)=2;
+	printf("%p\n",a);
+	printf("%p\n",a+1);
 	/*struct file_operations demo_ops;
 	demo_ops.write=my_write;
 	demo_ops.print=my_print;*/
