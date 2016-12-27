@@ -39,6 +39,18 @@ struct file_operations demo_ops =
 	my_print,
 };
 
+struct abc
+{
+	int a;
+	int b;
+	int c;
+};
+
+struct abc abc =
+{
+	.a=1,
+};
+
 int main()
 {
 	int *a;
@@ -52,5 +64,6 @@ int main()
 	demo_ops.print=my_print;*/
 	demo_ops.write("abc");
 	demo_ops.print("abc");
+	printf("%d,%d,%d\n",abc.a,abc.b,abc.c);
 	return 0;
 }
