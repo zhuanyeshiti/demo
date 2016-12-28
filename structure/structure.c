@@ -27,17 +27,17 @@ int my_print(char *str)
 	return 0;
 }
 
-/*struct file_operations demo_ops = 
-{
-	.write = my_write;
-	.print = my_print;
-};*/
-
 struct file_operations demo_ops = 
+{
+	.write = my_write,
+	//.print = my_print,
+};
+
+/*struct file_operations demo_ops = 
 {
 	my_write,
 	my_print,
-};
+};*/
 
 struct abc
 {
@@ -63,7 +63,10 @@ int main()
 	demo_ops.write=my_write;
 	demo_ops.print=my_print;*/
 	demo_ops.write("abc");
-	demo_ops.print("abc");
+	if(demo_ops.print==NULL)
+		printf("my_print: bad\n");
+	else
+		demo_ops.print("abc");
 	printf("%d,%d,%d\n",abc.a,abc.b,abc.c);
 	return 0;
 }
