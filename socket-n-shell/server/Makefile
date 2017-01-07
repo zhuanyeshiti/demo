@@ -1,2 +1,2 @@
 ts:
-	gcc -o ts command.c socket.c
+	gcc -D REENTRANT -o ts command.c socket.c
