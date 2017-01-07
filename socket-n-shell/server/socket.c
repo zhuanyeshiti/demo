@@ -4,7 +4,7 @@
 #include <string.h>
 #include <pthread.h>
 
-//extern int command(char *cmd);
+extern int command(char *cmd);
 
 void *thread_func(void *arg);
 char *message;
@@ -38,9 +38,9 @@ int main()
 
 void *thread_func(void *arg)
 {
-//	command("ls");
+	command("ls");
 
-//	pthread_exit("thread done!\n");
+	pthread_exit("thread done!\n");
 }
 
 
