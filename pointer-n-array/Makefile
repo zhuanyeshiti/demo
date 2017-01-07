@@ -1,4 +1,4 @@
-pointer:
+func-pointer:
 	gcc -o ts func-pointer.c
 pointer:
 	gcc -o ts pointer.c
