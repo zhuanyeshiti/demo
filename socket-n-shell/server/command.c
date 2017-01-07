@@ -1,10 +1,10 @@
 #include <stdio.h>
 
-int command()
+int command(char *command)
 {
 	int a;
 	char buffer[200]={0};
-	char *command;
+	//char *command;
 	command="lllllll";
 	FILE *fp;
 

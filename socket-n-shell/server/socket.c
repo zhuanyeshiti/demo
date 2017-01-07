@@ -1,9 +1,9 @@
 #include <stdio.h>
 
-extern int command(void);
+extern int command(char *cmd);
 
 int main()
 {
-	command();
+	command("ls");
 	return 0;
 }
