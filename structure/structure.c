@@ -68,5 +68,7 @@ int main()
 	else
 		demo_ops.print("abc");
 	printf("%d,%d,%d\n",abc.a,abc.b,abc.c);
+	unsigned int n=0;
+	printf("%x\n",~n);
 	return 0;
 }
