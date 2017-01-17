@@ -20,8 +20,8 @@ int main()
 	*d=2;
 	printf("%d\n",*d);
 	e=&f;
-	*(e+3)=11;
+	*(e+16)=11;
 	printf("%p,%p\n",&f,e);
-	printf("%d\n",*(e+3));
+	printf("%d\n",*(e+16));
 	return 0;
 }
