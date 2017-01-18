@@ -13,5 +13,6 @@ int main()
 	trb.b='a';
 	printf("%d\n",sizeof(trb));
 	printf("%d,%d\n",trb.a,trb.b);
+	printf("%p,%p\n",&trb,&trb.b);
 	return 0;
 }
