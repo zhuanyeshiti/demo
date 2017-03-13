@@ -1,2 +1,2 @@
-void hello();
+int * hello(void);
 int b;

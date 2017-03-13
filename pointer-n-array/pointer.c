@@ -12,6 +12,7 @@ int main()
 	*p='b';
 	*s='a';
 	//s="abcdefg";
+	//s=NULL;
 	int i;
 	for(i=0;i<10;i++)
 	{

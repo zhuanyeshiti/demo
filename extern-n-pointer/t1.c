@@ -16,11 +16,13 @@ struct s2{
 #define DEBUG(x) x
 
 void func(int);
+//extern int * hello();
 
 int main()
 {
 	//extern int b;
 	int a;
+	int *c;
 	a=b;
 	struct s2 ss;
 	//ss=(struct s2*)malloc(sizeof(s2));
@@ -30,7 +32,9 @@ int main()
 	ss.s->b="hello world!";
 	printf("%s\n",ss.s->b);
 	printf("%d\n",b);
-	DEBUG(hello());
+	c=DEBUG(hello());
+	if(c==NULL)
+		printf("NULL\n");
 	ss.s->c=func;
 	(*ss.s->c)(1);
 	//fn(1);
