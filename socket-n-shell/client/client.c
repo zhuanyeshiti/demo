@@ -10,9 +10,12 @@ int main()
 {
 	int sockfd;
 	int len;
+	int i;
 	struct sockaddr_in addr;
 	int result;
-	char ch='A';
+	char ch[100];
+	char *c;
+	c=ch;
 	
 	sockfd=socket(AF_INET,SOCK_STREAM,0);
 	addr.sin_family=AF_INET;
@@ -21,10 +24,16 @@ int main()
 	len=sizeof(addr);
 	result=connect(sockfd,(struct sockaddr *)&addr,len);
 
-	while((ch=getchar())!='b')
+	i=0;
+	while((ch[i]=getchar())!='b')
 	{
 		getchar();
-		write(sockfd,&ch,1);
+		if(*ch == 'b')
+		{
+			i=0;
+			write(sockfd,c,100);
+		}
+		i++;
 	}
 
 	return 0;

@@ -65,19 +65,20 @@ void *thread_func(void *arg)
 		client_fd=accept(server_fd,(struct sockaddr *)&client_addr,(socklen_t *)&client_len);
 		while(1)
 		{
-			res=read(client_fd,&ch,1);
+			res=read(client_fd,&ch,100);
 			printf("the first: %c\n",ch);
 //			sleep(3);
 			command(&ch);
 			if(res==0)
 				break;
 		}
-		read(client_fd,&ch,1);
+		read(client_fd,&ch,100);
 		printf("the second: %c\n",ch);
 		close(client_fd);
 	}
 
 	command("sudo -i");
+	//command("vim test");
 
 	pthread_exit("thread done!\n");
 }

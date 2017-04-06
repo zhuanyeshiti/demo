@@ -1,5 +1,13 @@
 #include <stdio.h>
 
+int command(char *command);
+
+int main()
+{
+	command("vim test");
+	return 0;
+}
+
 int command(char *command)
 {
 	int a;
@@ -14,7 +22,12 @@ int command(char *command)
 	fp=popen(command,"w");
 
 	while(fgets(buffer,200,fp)!=NULL)
-		printf("%s\n",buffer);
+		printf("%s",buffer);
+	/*while(getchar()!='b')
+	{
+		fgets(buffer, 200, fp);
+		printf("%s\n", buffer);
+	}*/
 
 	pclose(fp);
 	return 0;
