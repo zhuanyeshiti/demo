@@ -4,7 +4,7 @@ int command(char *command);
 
 int main()
 {
-	command("vim test");
+	command("ls");
 	return 0;
 }
 
@@ -19,7 +19,7 @@ int command(char *command)
 
 	FILE *fp;
 
-	fp=popen(command,"w");
+	fp=popen(command,"r");
 
 	while(fgets(buffer,200,fp)!=NULL)
 		printf("%s",buffer);
