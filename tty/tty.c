@@ -1,6 +1,8 @@
 #include <stdio.h>
 #include <unistd.h>
 #include <stdlib.h>
+#include <pthread.h>
+#include <string.h>
 
 char *menu[] = {
 	"a - add new record",
@@ -9,7 +11,16 @@ char *menu[] = {
 	NULL,
 };
 
+struct argument
+{
+	FILE *input;
+	FILE *output;
+	FILE *fp;
+	char *buf;
+};
+
 int getchoice(char *greet, char *choices[], FILE *in, FILE *out);
+void *thread_func(void *arg);
 
 int main()
 {
@@ -17,7 +28,18 @@ int main()
 	FILE *input;
 	FILE *output;
 	FILE *fp;
+
+	struct argument *arg = NULL;
+	int result;
+	pthread_t a_thread;
+
 	char buffer[200]={0};
+	int fpi;
+	int fpi2;
+	int outi;
+	char ch;
+	char fpbuf[4000];
+	char outbuf[4000];
 
 	input = fopen("/dev/tty", "r");
 	output = fopen("/dev/tty", "w");
@@ -26,6 +48,14 @@ int main()
 		fprintf(stderr, "unable to open /dev/tty\n");
 		exit(1);
 	}
+
+	arg = (struct argument *)malloc(sizeof(struct argument));
+	arg->input = input;
+	arg->output = output;
+	arg->fp = fp;
+	arg->buf = fpbuf;
+	result = pthread_create(&a_thread, NULL, thread_func, (void *)arg);
+
 	/*
 	do
 	{
@@ -35,11 +65,30 @@ int main()
 	*/
 	while(fgets(buffer, 200, input) != NULL)
 	{
+		fpi=0;
 		fp = popen(buffer, "r");
+		//fprintf(output, "allllll");
 		while(fgets(buffer, 200, fp) != NULL)
+		//while(ch=fgetc(fp) != EOF)
 		{
-			fprintf(output, "%s\n", buffer);
+			fpi2=0;
+			while(strlen(buffer)!=fpi2)
+			{
+				fpbuf[fpi]=buffer[fpi2];
+				fpi++;
+				fpi2++;
+			}
+			//fpbuf[fpi]=ch;
+			//fpi++;
+			//fprintf(output, "%s\n", buffer);
 			//printf("%s\n", buffer);
+			//printf("%c", fpbuf[fpi]);
+		}
+		fpi2=0;
+		while(fpi2!=fpi)
+		{
+			fprintf(output, "%c", fpbuf[fpi2]);
+			fpi2++;
 		}
 		pclose(fp);
 	}
@@ -82,5 +131,21 @@ int getchoice(char *greet, char *choices[], FILE *in, FILE *out)
 	return selected;
 }
 
+void *thread_func(void *arg)
+{
+	int a;
+	char buffer[200] = {0};
+	char buf[4000] = {0};
+label:	if((((struct argument *)arg)->fp)==NULL)
+		goto label;
+	while(fgets(buffer, 200, ((struct argument *)arg)->fp) != NULL)
+	//while(1)
+	{
+		fprintf(((struct argument *)arg)->output, "%s\n", buffer); //((struct argument *)arg)->buf);
+		if((((struct argument *)arg)->fp)==NULL)
+		goto label;
+		//printf("%s\n", buffer);
+	}
 
+}
 
