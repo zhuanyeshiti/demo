@@ -1,4 +1,5 @@
 #include <stdio.h>
+#define _XOPEN_SOURCE
 #include <stdlib.h>
 #include <string.h>
 #include <unistd.h>
@@ -6,7 +7,8 @@
 //#include <Linux/limits.h>
 #include <pty.h> // for openpty() & forkpty()
 #include <utmp.h> // for login_pty
-int main()
+
+int main(int argc, char *argv[])
 {
 	int rtnVal = 0;
 	int mpty, spty, c=0, dev=0;
