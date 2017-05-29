@@ -6,6 +6,7 @@
 #include <sys/types.h>
 #include <fcntl.h>
 //#include <Linux/limits.h>
+#include <time.h>
 #include <pty.h> // for openpty() & forkpty()
 #include <utmp.h> // for login_pty
 
@@ -28,9 +29,9 @@ int main(int argc, char *argv[])
 		/*
 		 * test write to and read from spty.
 		 */
-		char temp[50] = {"hello world!"};
+		char temp[50] = {"hello world!\n"};
 		char temp2[100] = {'\0'};
-		c = write(mpty, temp, 5);
+		c = write(mpty, temp, strlen(temp));
 		if(c <= 0)
 		{
 			printf("error.\n");
@@ -40,13 +41,13 @@ int main(int argc, char *argv[])
 		sleep(1);
 		printf("try to read from mpty.\n");
 		sleep(1);
-		c = read(mpty, temp2, 5);
+		c = read(spty, temp2, strlen(temp));
 		if(c <= 0)
 		{
 			printf("error.\n");
 		}
 		printf("read fro mpty %d charactors success.\n", c);
-		printf("/n %s /n\n", temp2);
+		printf("/n %s", temp2);
 		
 		/*
 		 * end
@@ -68,16 +69,21 @@ int main(int argc, char *argv[])
 		}
 		else if(fpid == 0)
 		{
-			dup2(mpty, STDIN_FILENO);
-			dup2(mpty, STDOUT_FILENO);
+			dup2(spty, STDIN_FILENO);
+			dup2(spty, STDOUT_FILENO);
 			//dup2(mpty, STDERR_FILENO);
-			//close(mpty);
+			close(mpty);
 			printf("child\n");
 			execl("/bin/sh", "sh", "-c", "vim file", (char *)0);
+			//execl("/bin/sh", "sh", "-c", "ls", (char *)0);
 		}
 		else
 		{
+			sleep(1);
+			c = read(mpty, temp2, 100);
 			printf("parent.\n");
+			printf("%s", temp2);
+			//sleep(1);
 			//execl("/bin/sh", "sh", "-c", "ls -l", (char *)0);
 		}
 	}
