@@ -62,6 +62,7 @@ int main(int argc, char *argv[])
 		 * end
 		 */
 
+		char * temp3;
 		fpid = fork();
 		if(fpid<0)
 		{
@@ -72,17 +73,24 @@ int main(int argc, char *argv[])
 			dup2(spty, STDIN_FILENO);
 			dup2(spty, STDOUT_FILENO);
 			//dup2(mpty, STDERR_FILENO);
-			close(mpty);
+			//close(mpty);
 			printf("child\n");
 			execl("/bin/sh", "sh", "-c", "vim file", (char *)0);
 			//execl("/bin/sh", "sh", "-c", "ls", (char *)0);
+			//c = read(spty, temp3, strlen(temp3));
 		}
 		else
-		{
+		{	
+			temp3 = ":wq\n";
 			sleep(1);
-			c = read(mpty, temp2, 100);
-			printf("parent.\n");
-			printf("%s", temp2);
+			c = write(mpty, temp3, strlen(temp));
+			sleep(1);
+			//while(c = read(mpty, temp2, 100))
+			//{
+				c = read(mpty, temp3, strlen(temp3));
+				printf("parent.\n");
+				printf("%s", temp3);
+			//}
 			//sleep(1);
 			//execl("/bin/sh", "sh", "-c", "ls -l", (char *)0);
 		}

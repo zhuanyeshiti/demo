@@ -35,12 +35,12 @@ int main(int argc, char *argv[])
 		{
 			printf("error.\n");
 		}
-		c = read(spty, temp2, 5);
+		c = read(mpty, temp2, 5);
 		if(c <= 0)
 		{
 			printf("error.\n");
 		}
-		printf("read fro mpty %d charactors success.\n", c);
+		printf("read fro spty %d charactors success.\n", c);
 		printf("/n %s /n\n", temp2);
 		/*
 		 * end
